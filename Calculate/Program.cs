@@ -20,18 +20,29 @@
             {
                 result = number1 - number2;
             }
+
             if (operation == "*")
             {
                 result = number1 * number2;
             }
+
             if (operation == "+")
             {
                 result = number1 + number2;
             }
+
             if (operation == "/")
             {
-                result = (double)number1 / (double)number2;
+                if (number2 == 0)
+                {
+                    Console.WriteLine("Делить на 0 нельзя!");
+                }
+                else
+                {
+                    result = (double)number1 / (double)number2;
+                }
             }
+
             Console.WriteLine(number1 + " " + operation + " " + number2 + " = " + result);
 
 
