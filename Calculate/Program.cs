@@ -1,47 +1,63 @@
 ﻿namespace Calculate
 {
+    enum Operation
+    {
+        Add = '+',
+        Sub = '-',
+        Mul = '*',
+        Div = '/',
+
+    }
     internal class Program
     {
+        int parseConsole(string asq)
+        {
+            Console.Write(asq);
+            return int.Parse(Console.ReadLine());
+        }
+
+        Operation parseOperation(string asq)
+        {
+            Console.Write(asq);
+            switch (Console.ReadLine()){
+                case "+": return Operation.Add;
+                case "-": return Operation.Sub;
+                case "*": return Operation.Mul;
+                case "/": return Operation.Div;
+                default: return Operation.Add;
+            }
+        }
+
+        double calculate(int number1, int number2, Operation operation)
+        {
+            switch (operation)
+            {
+                case Operation::Add:
+                    return number1 + number2;
+                case Operation::Sub:
+                    return number1 - number2;
+                case Operation::Mul:
+                    return number1 * number2;
+                case Operation::Div:
+                    return (double)number1 / (double)number2;
+                default:
+                    return number1 + number2;
+            }
+
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Привет, Андрей !");
 
-            Console.Write("Первое число: ");
-            int number1 = int.Parse(Console.ReadLine());
+            int number1 = parseConsole("Первое число: ");
 
-            Console.Write("Второе число: ");
-            int number2 = int.Parse(Console.ReadLine());
+            int number2 = parseConsole("Второе число: ");
 
-            Console.Write("Операция: ");
-            string operation = Console.ReadLine();
+            Operation operation = parseOperation("Операция: ");
 
-            double result = 0;
-            if (operation == "-")
-            {
-                result = number1 - number2;
-            }
+            double result = calculate(number1, number2, operation);
 
-            if (operation == "*")
-            {
-                result = number1 * number2;
-            }
-
-            if (operation == "+")
-            {
-                result = number1 + number2;
-            }
-
-            if (operation == "/")
-            {
-                if (number2 == 0)
-                {
-                    Console.WriteLine("Делить на 0 нельзя!");
-                }
-                else
-                {
-                    result = (double)number1 / (double)number2;
-                }
-            }
 
             Console.WriteLine(number1 + " " + operation + " " + number2 + " = " + result);
 
